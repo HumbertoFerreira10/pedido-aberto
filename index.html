@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quer namorar comigo?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffc8dd;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        h1 {
+            color: #590d22;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            width: 100%;
+            height: 100px;
+        }
+
+        .btn {
+            background-color: #ffb3c1;
+            color: #590d22;
+            border: 3px solid #590d22;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        #btn-sim {
+            z-index: 10;
+        }
+
+        #btn-nao {
+            position: relative; /* Começa alinhado direitinho ao lado do Sim */
+            transition: all 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Quer namorar comigo? 🥰</h1>
+
+    <div class="buttons-container">
+        <button id="btn-sim" class="btn" onclick="aceitou()">Sim</button>
+        <button id="btn-nao" class="btn" onmouseover="moverBotao()" ontouchstart="moverBotao()" onclick="moverBotao()">Não</button>
+    </div>
+
+    <script>
+        function aceitou() {
+            document.body.innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; color: #590d22; padding: 20px;">
+                    <h1 style="font-size: 32px;">Amo-te meu amor! ❤️</h1>
+                    <p style="font-size: 20px; font-weight: bold;">Lanchinho mais tarde? 🍕</p>
+                </div>
+            `;
+        }
+
+        function moverBotao() {
+            const btnNao = document.getElementById('btn-nao');
+            
+            // Muda para absolute para poder soltar em qualquer lugar da tela
+            btnNao.style.position = 'fixed';
+
+            // Margem de segurança para o botão não sumir nas bordas
+            const maxX = window.innerWidth - btnNao.offsetWidth - 20;
+            const maxY = window.innerHeight - btnNao.offsetHeight - 20;
+
+            const randomX = Math.max(10, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+
+            btnNao.style.left = randomX + 'px';
+            btnNao.style.top = randomY + 'px';
+        }
+    </script>
+</body>
+</html>
